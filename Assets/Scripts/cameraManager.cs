@@ -26,9 +26,9 @@ public class cameraManager : MonoBehaviour {
 		m_Head = m_Camera.transform.parent;
 		m_Animator = m_Camera.GetComponent<Animator> ();
 		actualCharacter = Characters.GetChild(beginCharacter);
-		m_Head.transform.SetParent (actualCharacter.GetComponent<CharacterCaracteristics> ().cameraParent);
+		m_Head.transform.SetParent (actualCharacter.GetComponentInChildren<CharacterCaracteristics> ().cameraParent);
 		m_Head.transform.localPosition = Vector3.zero;
-		newThought = actualCharacter.GetComponent<CharacterCaracteristics> ().thought;
+		newThought = actualCharacter.GetComponentInChildren<CharacterCaracteristics> ().thought;
 		newThought.volume = 1;
 
 	}
@@ -36,9 +36,9 @@ public class cameraManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (Input.GetKeyDown (KeyCode.Space)) {
+		/*if (Input.GetKeyDown (KeyCode.Space)) {
 			voirLeVif ();
-		}
+		}*/
 
 		/*if (!m_Animator.GetCurrentAnimatorStateInfo (0).IsName ("CloseEyes")) {
 			if (Input.GetKeyDown(KeyCode.UpArrow)) {
@@ -66,10 +66,12 @@ public class cameraManager : MonoBehaviour {
 			
 			if (m_Animator.GetCurrentAnimatorStateInfo (0).normalizedTime > 1){
 		
-				m_Head.transform.SetParent (actualCharacter.GetComponent<CharacterCaracteristics> ().cameraParent);
+				m_Head.transform.SetParent (actualCharacter.GetComponentInChildren<CharacterCaracteristics> ().cameraParent);
 				m_Head.transform.localPosition = Vector3.zero;
 				lastThought.volume = 0;
 				newThought.volume = 1;
+				actualCharacter.GetComponentInChildren<MeshCollider> ().enabled = false;
+				actualCharacter.GetComponentInChildren<MeshRenderer> ().enabled = false;
 
 				m_Animator.SetTrigger ("Open");
 			}
@@ -79,9 +81,11 @@ public class cameraManager : MonoBehaviour {
 
 	public void ActualiseCharacter (Transform charact) {
 		if (!m_Animator.GetCurrentAnimatorStateInfo (0).IsName ("CloseEyes")) {
-			lastThought = actualCharacter.GetComponent<CharacterCaracteristics> ().thought;
+			lastThought = actualCharacter.GetComponentInChildren<CharacterCaracteristics> ().thought;
+			actualCharacter.GetComponentInChildren<MeshCollider> ().enabled = true;
+			actualCharacter.GetComponentInChildren<MeshRenderer> ().enabled = true;
 			m_Animator.SetTrigger ("Close");
-			newThought = charact.GetComponent<CharacterCaracteristics> ().thought;
+			newThought = charact.GetComponentInChildren<CharacterCaracteristics> ().thought;
 			actualCharacter = charact;
 		}
 	}
