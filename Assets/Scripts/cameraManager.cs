@@ -7,7 +7,7 @@ public class cameraManager : MonoBehaviour {
 	public Transform Characters;
 	public Transform Setting;
 	public int beginCharacter = 0;
-	private int actualCharacter;
+	public Transform actualCharacter;
 
 	public Vector3 startRotation;
 
@@ -25,10 +25,10 @@ public class cameraManager : MonoBehaviour {
 		m_Camera = Camera.main;
 		m_Head = m_Camera.transform.parent;
 		m_Animator = m_Camera.GetComponent<Animator> ();
-		actualCharacter = beginCharacter;
-		m_Head.transform.SetParent (Characters.GetChild(actualCharacter).GetComponent<CharacterCaracteristics> ().cameraParent);
+		actualCharacter = Characters.GetChild(beginCharacter);
+		m_Head.transform.SetParent (actualCharacter.GetComponent<CharacterCaracteristics> ().cameraParent);
 		m_Head.transform.localPosition = Vector3.zero;
-		newThought = Characters.GetChild(actualCharacter).GetComponent<CharacterCaracteristics> ().thought;
+		newThought = actualCharacter.GetComponent<CharacterCaracteristics> ().thought;
 		newThought.volume = 1;
 
 	}
@@ -40,7 +40,7 @@ public class cameraManager : MonoBehaviour {
 			voirLeVif ();
 		}
 
-		if (!m_Animator.GetCurrentAnimatorStateInfo (0).IsName ("CloseEyes")) {
+		/*if (!m_Animator.GetCurrentAnimatorStateInfo (0).IsName ("CloseEyes")) {
 			if (Input.GetKeyDown(KeyCode.UpArrow)) {
 				lastThought = Characters.GetChild(actualCharacter).GetComponent<CharacterCaracteristics> ().thought;
 				m_Animator.SetTrigger ("Close");
@@ -60,13 +60,13 @@ public class cameraManager : MonoBehaviour {
 				}
 				newThought = Characters.GetChild(actualCharacter).GetComponent<CharacterCaracteristics> ().thought;
 			}
-		}
+		}*/
 
 		if (m_Animator.GetCurrentAnimatorStateInfo (0).IsName("CloseEyes") && !m_Animator.IsInTransition(0)) {
 			
 			if (m_Animator.GetCurrentAnimatorStateInfo (0).normalizedTime > 1){
 		
-				m_Head.transform.SetParent (Characters.GetChild(actualCharacter).GetComponent<CharacterCaracteristics> ().cameraParent);
+				m_Head.transform.SetParent (actualCharacter.GetComponent<CharacterCaracteristics> ().cameraParent);
 				m_Head.transform.localPosition = Vector3.zero;
 				lastThought.volume = 0;
 				newThought.volume = 1;
@@ -75,6 +75,15 @@ public class cameraManager : MonoBehaviour {
 			}
 		} 
 		
+	}
+
+	public void ActualiseCharacter (Transform charact) {
+		if (!m_Animator.GetCurrentAnimatorStateInfo (0).IsName ("CloseEyes")) {
+			lastThought = actualCharacter.GetComponent<CharacterCaracteristics> ().thought;
+			m_Animator.SetTrigger ("Close");
+			newThought = charact.GetComponent<CharacterCaracteristics> ().thought;
+			actualCharacter = charact;
+		}
 	}
 
 	void voirLeVif() {

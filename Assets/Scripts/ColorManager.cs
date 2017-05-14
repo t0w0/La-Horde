@@ -34,7 +34,7 @@ public class ColorManager : MonoBehaviour {
 				foreach (Transform tr in go.transform) {
 					if (tr.GetComponent<MeshRenderer> () != null) {
 						tr.GetComponent<MeshRenderer> ().material.color = c;
-						Debug.Log (go.name);
+						//Debug.Log (go.name);
 					}
 				}
 			}
@@ -43,7 +43,7 @@ public class ColorManager : MonoBehaviour {
 					if (tr.GetComponent<SkinnedMeshRenderer> () != null) {
 						foreach (Material mat in tr.GetComponent<SkinnedMeshRenderer> ().materials) {
 							mat.color = c;
-							Debug.Log (tr.name);
+							//Debug.Log (tr.name);
 						}
 					}
 				}
