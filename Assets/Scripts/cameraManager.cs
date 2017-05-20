@@ -18,9 +18,6 @@ public class cameraManager : MonoBehaviour {
 	private AudioSource lastThought;
 	private AudioSource newThought;
 
-	private bool vifView = false;
-
-	// Use this for initialization
 	void Start () {
 		m_Camera = Camera.main;
 		m_Head = m_Camera.transform.parent;
@@ -30,33 +27,11 @@ public class cameraManager : MonoBehaviour {
 		m_Head.transform.localPosition = Vector3.zero;
 		newThought = actualCharacter.GetComponentInChildren<CharacterCaracteristics> ().thought;
 		newThought.volume = 1;
+		actualCharacter.GetComponent<MeshCollider> ().enabled = false;
+		actualCharacter.GetComponent<MeshRenderer> ().enabled = false;
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
-
-
-		/*if (!m_Animator.GetCurrentAnimatorStateInfo (0).IsName ("CloseEyes")) {
-			if (Input.GetKeyDown(KeyCode.UpArrow)) {
-				lastThought = Characters.GetChild(actualCharacter).GetComponent<CharacterCaracteristics> ().thought;
-				m_Animator.SetTrigger ("Close");
-				actualCharacter++;
-				if (actualCharacter >= Characters.transform.childCount) {
-					actualCharacter = 0;
-				} 
-				newThought = Characters.GetChild(actualCharacter).GetComponent<CharacterCaracteristics> ().thought;
-			}
-
-			else if (Input.GetKeyDown(KeyCode.DownArrow)) {
-				lastThought = Characters.GetChild(actualCharacter).GetComponent<CharacterCaracteristics> ().thought;
-				m_Animator.SetTrigger ("Close");
-				actualCharacter--;
-				if (actualCharacter < 0) {
-					actualCharacter = Characters.childCount - 1;
-				}
-				newThought = Characters.GetChild(actualCharacter).GetComponent<CharacterCaracteristics> ().thought;
-			}
-		}*/
 
 		if (m_Animator.GetCurrentAnimatorStateInfo (0).IsName("CloseEyes") && !m_Animator.IsInTransition(0)) {
 			
@@ -72,7 +47,6 @@ public class cameraManager : MonoBehaviour {
 				m_Animator.SetTrigger ("Open");
 			}
 		} 
-		
 	}
 
 	public void ActualiseCharacter (Transform charact) {
@@ -84,37 +58,5 @@ public class cameraManager : MonoBehaviour {
 			newThought = charact.GetComponent<CharacterCaracteristics> ().thought;
 			actualCharacter = charact;
 		}
-	}
-
-	void voirLeVif() {
-		if (!vifView) {
-			foreach (Transform tr in Characters) {
-				tr.GetComponent<SkinnedMeshRenderer> ().enabled = false;
-				tr.GetComponentInChildren<ParticleSystem> ().Play();
-
-			}
-			foreach (Transform tr in Setting) {
-				tr.GetComponent<MeshRenderer> ().enabled = false;
-			}
-			m_Camera.GetComponent<VignetteAndChromaticAberration> ().intensity = 0.4f ;
-			m_Camera.GetComponent<VignetteAndChromaticAberration> ().blur = 0.5f ;
-			m_Camera.GetComponent<VignetteAndChromaticAberration> ().chromaticAberration = 25 ;
-			vifView = true;
-		} 
-		else {
-			foreach (Transform tr in Characters) {
-				tr.GetComponent<SkinnedMeshRenderer> ().enabled = true;
-				tr.GetComponentInChildren<ParticleSystem> ().Stop();
-
-			}
-			foreach (Transform tr in Setting) {
-				tr.GetComponent<MeshRenderer> ().enabled = true;
-			}
-			m_Camera.GetComponent<VignetteAndChromaticAberration> ().intensity =0.036f ;
-			m_Camera.GetComponent<VignetteAndChromaticAberration> ().blur = 0 ;
-			m_Camera.GetComponent<VignetteAndChromaticAberration> ().chromaticAberration = 0.2f ;
-			vifView = false;
-		}
-
 	}
 }
