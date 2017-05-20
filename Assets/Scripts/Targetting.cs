@@ -85,21 +85,15 @@ public class Targetting: MonoBehaviour
 			if (rayCasted) 
 			{
 				Cursor.SetCursor (cursorHover, hotSpot, cursorMode);
+				//hitInfo.transform.GetComponentsInChildren<MeshRenderer>();
 			} 
 			else 
 			{
 				Cursor.SetCursor (cursorOff, hotSpot, cursorMode);
 			}
 			selected = false;
-			//targettedObject = null;
-			//chargingCounter = 0;
-		}
 
-//		if (lastTargettedObject) {
-//			if (lastTargettedObject.GetComponent<AgentsParameters> ().isMoving && chargingCounter == 0) {
-//				myTransform.position = targettedObject.GetComponent<AgentsParameters> ().anchor.position;
-//			}
-//		}
+		}
 	}
 
 	/*void LateUpdate () {

@@ -19,19 +19,6 @@ public class CharacterCaracteristics : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
-		
-		thought = transform.GetChild (1).GetComponent<AudioSource>();
-		if (thoughtClip != null) thought.clip = thoughtClip;
-		thought.Play ();
-
-		saying = transform.GetChild (0).GetComponent<AudioSource>();
-		if (sayingClip != null) saying.clip = sayingClip;
-		saying.Play ();
-
-		/*vif = transform.GetChild (3).GetComponent<ParticleSystemRenderer>();
-		vif.material = vifMaterial;*/
-
-		cameraParent = saying.transform;
 	}
 	
 	// Update is called once per frame

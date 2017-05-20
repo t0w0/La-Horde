@@ -30,15 +30,11 @@ public class cameraManager : MonoBehaviour {
 		m_Head.transform.localPosition = Vector3.zero;
 		newThought = actualCharacter.GetComponentInChildren<CharacterCaracteristics> ().thought;
 		newThought.volume = 1;
-
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-		/*if (Input.GetKeyDown (KeyCode.Space)) {
-			voirLeVif ();
-		}*/
 
 		/*if (!m_Animator.GetCurrentAnimatorStateInfo (0).IsName ("CloseEyes")) {
 			if (Input.GetKeyDown(KeyCode.UpArrow)) {
@@ -66,12 +62,12 @@ public class cameraManager : MonoBehaviour {
 			
 			if (m_Animator.GetCurrentAnimatorStateInfo (0).normalizedTime > 1){
 		
-				m_Head.transform.SetParent (actualCharacter.GetComponentInChildren<CharacterCaracteristics> ().cameraParent);
+				m_Head.transform.SetParent (actualCharacter.GetComponent<CharacterCaracteristics> ().cameraParent);
 				m_Head.transform.localPosition = Vector3.zero;
 				lastThought.volume = 0;
 				newThought.volume = 1;
-				actualCharacter.GetComponentInChildren<MeshCollider> ().enabled = false;
-				actualCharacter.GetComponentInChildren<MeshRenderer> ().enabled = false;
+				actualCharacter.GetComponent<MeshCollider> ().enabled = false;
+				actualCharacter.GetComponent<MeshRenderer> ().enabled = false;
 
 				m_Animator.SetTrigger ("Open");
 			}
@@ -82,10 +78,10 @@ public class cameraManager : MonoBehaviour {
 	public void ActualiseCharacter (Transform charact) {
 		if (!m_Animator.GetCurrentAnimatorStateInfo (0).IsName ("CloseEyes")) {
 			lastThought = actualCharacter.GetComponentInChildren<CharacterCaracteristics> ().thought;
-			actualCharacter.GetComponentInChildren<MeshCollider> ().enabled = true;
-			actualCharacter.GetComponentInChildren<MeshRenderer> ().enabled = true;
+			actualCharacter.GetComponent<MeshCollider> ().enabled = true;
+			actualCharacter.GetComponent<MeshRenderer> ().enabled = true;
 			m_Animator.SetTrigger ("Close");
-			newThought = charact.GetComponentInChildren<CharacterCaracteristics> ().thought;
+			newThought = charact.GetComponent<CharacterCaracteristics> ().thought;
 			actualCharacter = charact;
 		}
 	}
