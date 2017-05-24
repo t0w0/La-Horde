@@ -31,7 +31,7 @@ public class CharactersManager : MonoBehaviour {
 				dialogue.GetComponent<AudioSource> ().clip = (AudioClip)Resources.Load ("sounds/dialogues/D-" + tr.name);
 				dialogue.GetComponent<AudioSource> ().spatialBlend = 1;
 				dialogue.GetComponent<AudioSource> ().minDistance = 1;
-				dialogue.GetComponent<AudioSource> ().maxDistance = 10;
+				dialogue.GetComponent<AudioSource> ().maxDistance = 5;
 				tr.GetComponent <CharacterCaracteristics> ().saying = dialogue.GetComponent<AudioSource> ();
 				tr.GetComponent <CharacterCaracteristics> ().saying.Play ();
 
