@@ -91,7 +91,7 @@ public class Targetting: MonoBehaviour
 					Cursor.SetCursor (cursorHover, hotSpot, cursorMode);
 					originalMat = hitInfo.transform.GetComponent<MeshRenderer> ().materials;
 					hitInfo.transform.GetComponent<MeshRenderer> ().materials = hoverMaterial;
-					hitInfo.transform.GetComponent<CharacterCaracteristics> ().name.characterSize = 0.01f;
+					//hitInfo.transform.GetComponent<CharacterCaracteristics> ().name.characterSize = 0.01f;
 					hoverCharacter = hitInfo.transform;
 				}
 			} 
@@ -100,7 +100,7 @@ public class Targetting: MonoBehaviour
 				Cursor.SetCursor (cursorOff, hotSpot, cursorMode);
 				if (hoverCharacter != null) {
 					hoverCharacter.GetComponent<MeshRenderer> ().materials = originalMat;
-					hoverCharacter.GetComponent<CharacterCaracteristics> ().name.characterSize = 0f;
+					//hoverCharacter.GetComponent<CharacterCaracteristics> ().name.characterSize = 0f;
 					hoverCharacter = null;
 				}
 

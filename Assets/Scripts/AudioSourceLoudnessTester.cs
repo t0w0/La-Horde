@@ -5,13 +5,13 @@ public class AudioSourceLoudnessTester : MonoBehaviour {
 
 	public AudioSource audioSource;
 	public AudioMixer master;
-	public float updateStep = 0.1f;
+	public float updateStep = 0.05f;
 	public int sampleDataLength = 1024;
 	public float loudnessThreshold = 0.01f;
-	public int timeAheadToLookAt;
-	public float freqMax;
-	public float freqMin;
-	public float freqStep;
+	public int timeAheadToLookAt = 5;
+	public float freqMax = 22000;
+	public float freqMin = 400;
+	public float freqStep = 50;
 
 	private float currentUpdateTime = 0f;
 
@@ -21,9 +21,6 @@ public class AudioSourceLoudnessTester : MonoBehaviour {
 	// Use this for initialization
 	void Awake () {
 
-		if (!audioSource) {
-			Debug.LogError(GetType() + ".Awake: there was no audioSource set.");
-		}
 		clipSampleData = new float[sampleDataLength];
 
 	}

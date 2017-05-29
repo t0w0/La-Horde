@@ -29,6 +29,8 @@ public class cameraManager : MonoBehaviour {
 		newThought.volume = 1;
 		actualCharacter.GetComponent<MeshCollider> ().enabled = false;
 		actualCharacter.GetComponent<MeshRenderer> ().enabled = false;
+		GetComponent<AudioSourceLoudnessTester> ().audioSource = actualCharacter.GetComponent<CharacterCaracteristics> ().thought;
+		actualCharacter.GetComponent<CharacterCaracteristics> ().thought.volume = 1;
 	}
 
 	void Update () {
@@ -55,8 +57,10 @@ public class cameraManager : MonoBehaviour {
 			actualCharacter.GetComponent<MeshCollider> ().enabled = true;
 			actualCharacter.GetComponent<MeshRenderer> ().enabled = true;
 			m_Animator.SetTrigger ("Close");
-			newThought = charact.GetComponent<CharacterCaracteristics> ().thought;
+			lastThought.volume = 0;
 			actualCharacter = charact;
+			GetComponent<AudioSourceLoudnessTester> ().audioSource = actualCharacter.GetComponent<CharacterCaracteristics> ().thought;
+			actualCharacter.GetComponent<CharacterCaracteristics> ().thought.volume = 1;
 		}
 	}
 }
