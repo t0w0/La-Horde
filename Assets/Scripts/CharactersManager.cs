@@ -13,6 +13,9 @@ public class CharactersManager : MonoBehaviour {
 	public AudioSource[] pensees;
 	public AudioSource[] dialogues;
 
+	public GameObject particlePensee;
+	public GameObject particleDialogue;
+
 	public AudioClip[] penseesClips;
 	public AudioClip[] dialoguesClips;
 	public AudioMixerGroup gr;
@@ -41,6 +44,7 @@ public class CharactersManager : MonoBehaviour {
 			pensee.transform.localPosition = Vector3.zero;
 			pensees[i] = pensee.GetComponent<AudioSource> ();
 			pensees[i].Play ();
+			GameObject.Instantiate (particlePensee, pensee.transform);
 
 			GameObject dialogue = new GameObject ("dialogue");
 			dialogue.transform.parent = heads[i];
@@ -53,6 +57,7 @@ public class CharactersManager : MonoBehaviour {
 			dialogue.GetComponent<AudioSource> ().outputAudioMixerGroup = gr;
 			dialogues[i] = dialogue.GetComponent<AudioSource> ();
 			dialogues[i] .Play ();
+			GameObject.Instantiate (particleDialogue, dialogue.transform);
 
 		}	
 	}

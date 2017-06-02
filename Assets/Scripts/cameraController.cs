@@ -10,7 +10,7 @@ using Random = UnityEngine.Random;
         [SerializeField] private MouseLook m_MouseLook;
 
         private Camera m_Camera;
-	private Vector3 m_OriginalCameraPosition;
+		private Vector3 m_OriginalCameraPosition;
 
         // Use this for initialization
         private void Start()
