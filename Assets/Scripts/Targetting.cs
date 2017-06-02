@@ -15,7 +15,7 @@ public class Targetting: MonoBehaviour
 	public GameObject world;
 	private Transform myTransform;
 	public Transform lastTargettedObject;
-	public Transform targettedObject;	// Objet visé, null si aucun objet visé
+	public CapsuleCollider targettedObject;	// Objet visé, null si aucun objet visé
 	private cameraManager camManag;
 
 	private int RAYCASTLENGTH = 100;	// Longueur du rayon issu de la caméra
@@ -67,12 +67,12 @@ public class Targetting: MonoBehaviour
 		if (Input.GetButtonDown ("Fire1")) { 	// L'utilisateur appuye sur le click
 
 			if (rayCasted) {
-				Cursor.SetCursor (cursorHover, hotSpot, cursorMode);
+				Cursor.SetCursor (cursorSelected, hotSpot, cursorMode);
 
 				selected = true;
 
-				targettedObject = hitInfo.transform;
-				Debug.Log (targettedObject);
+				targettedObject = hitInfo.transform.GetComponent<CapsuleCollider>();
+				//Debug.Log (targettedObject);
 				camManag.ActualiseCharacter (targettedObject);
 
 			} 
