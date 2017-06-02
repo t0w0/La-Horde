@@ -1,0 +1,165 @@
+fileFormatVersion: 2
+guid: db8f9567d0227ed4f9c3439397777802
+timeCreated: 1496341243
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Aoi
+    100002: AoiAnchor
+    100004: CaracoleAnchor
+    100006: Coriolis
+    100008: CoriolisAnchor
+    100010: FirstPart
+    100012: GolgothAnchor
+    100014: Horde_Carac
+    100016: //RootNode
+    100018: Oroshi
+    100020: OroshiAnchor
+    100022: PietroAnchor
+    100024: SovAnchor
+    100026: Steppe
+    100028: SteppeAnchor
+    100030: Talweg
+    100032: TalwegAnchor
+    100034: Aoi_2_2
+    100036: Caracole_2
+    100038: Char
+    100040: Coriolis_2_2
+    100042: Coriolis_char
+    100044: Golgoth_2
+    100046: Oroshi_2_2
+    100048: Pietro_2
+    100050: Sov_2
+    100052: Steppe_2_2
+    100054: Talweg_2_2
+    400000: Aoi
+    400002: AoiAnchor
+    400004: CaracoleAnchor
+    400006: Coriolis
+    400008: CoriolisAnchor
+    400010: FirstPart
+    400012: GolgothAnchor
+    400014: Horde_Carac
+    400016: //RootNode
+    400018: Oroshi
+    400020: OroshiAnchor
+    400022: PietroAnchor
+    400024: SovAnchor
+    400026: Steppe
+    400028: SteppeAnchor
+    400030: Talweg
+    400032: TalwegAnchor
+    400034: Aoi_2_2
+    400036: Caracole_2
+    400038: Char
+    400040: Coriolis_2_2
+    400042: Coriolis_char
+    400044: Golgoth_2
+    400046: Oroshi_2_2
+    400048: Pietro_2
+    400050: Sov_2
+    400052: Steppe_2_2
+    400054: Talweg_2_2
+    2300000: Aoi_2_2
+    2300002: Caracole_2
+    2300004: Char
+    2300006: Coriolis_2_2
+    2300008: Golgoth_2
+    2300010: Oroshi_2_2
+    2300012: Pietro_2
+    2300014: Sov_2
+    2300016: Steppe_2_2
+    2300018: Talweg_2_2
+    3300000: Aoi_2_2
+    3300002: Caracole_2
+    3300004: Char
+    3300006: Coriolis_2_2
+    3300008: Golgoth_2
+    3300010: Oroshi_2_2
+    3300012: Pietro_2
+    3300014: Sov_2
+    3300016: Steppe_2_2
+    3300018: Talweg_2_2
+    4300000: Golgoth_2
+    4300002: Pietro_2
+    4300004: Sov_2
+    4300006: Aoi_2_2
+    4300008: Steppe_2_2
+    4300010: Talweg_2_2
+    4300012: Oroshi_2_2
+    4300014: Char
+    4300016: Coriolis_2_2
+    4300018: Caracole_2
+    7400000: CINEMA_4D_Prise Principale
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

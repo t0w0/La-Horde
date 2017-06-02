@@ -37,7 +37,7 @@ public class AudioSourceLoudnessTester : MonoBehaviour {
 				clipLoudness += Mathf.Abs(sample);
 			}
 			clipLoudness /= sampleDataLength; //clipLoudness is what you are looking for
-			Debug.Log(clipLoudness);
+			//Debug.Log(clipLoudness);
 		}
 		if (clipLoudness > loudnessThreshold) {
 			float freq;

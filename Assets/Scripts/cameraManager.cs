@@ -22,15 +22,15 @@ public class cameraManager : MonoBehaviour {
 		m_Camera = Camera.main;
 		m_Head = m_Camera.transform.parent;
 		m_Animator = m_Camera.GetComponent<Animator> ();
-		actualCharacter = Characters.GetChild(beginCharacter);
-		m_Head.transform.SetParent (actualCharacter.GetComponentInChildren<CharacterCaracteristics> ().cameraParent);
+		actualCharacter = Characters.GetChild(beginCharacter).GetChild(0);
+		m_Head.transform.SetParent (actualCharacter.parent.GetComponent<CharacterCaracteristics> ().cameraParent);
 		m_Head.transform.localPosition = Vector3.zero;
-		newThought = actualCharacter.GetComponentInChildren<CharacterCaracteristics> ().thought;
+		newThought = actualCharacter.parent.GetComponent<CharacterCaracteristics> ().thought;
 		newThought.volume = 1;
-		actualCharacter.GetComponent<MeshCollider> ().enabled = false;
-		actualCharacter.GetComponent<MeshRenderer> ().enabled = false;
-		GetComponent<AudioSourceLoudnessTester> ().audioSource = actualCharacter.GetComponent<CharacterCaracteristics> ().thought;
-		actualCharacter.GetComponent<CharacterCaracteristics> ().thought.volume = 1;
+		actualCharacter.GetComponentInChildren<CapsuleCollider> ().enabled = false;
+		actualCharacter.GetComponentInChildren<SkinnedMeshRenderer> ().enabled = false;
+		GetComponent<AudioSourceLoudnessTester> ().audioSource = actualCharacter.parent.GetComponent<CharacterCaracteristics> ().thought;
+		actualCharacter.parent.GetComponent<CharacterCaracteristics> ().thought.volume = 1;
 	}
 
 	void Update () {
@@ -39,12 +39,12 @@ public class cameraManager : MonoBehaviour {
 			
 			if (m_Animator.GetCurrentAnimatorStateInfo (0).normalizedTime > 1){
 		
-				m_Head.transform.SetParent (actualCharacter.GetComponent<CharacterCaracteristics> ().cameraParent);
+				m_Head.transform.SetParent (actualCharacter.parent.GetComponent<CharacterCaracteristics> ().cameraParent);
 				m_Head.transform.localPosition = Vector3.zero;
 				lastThought.volume = 0;
 				newThought.volume = 1;
-				actualCharacter.GetComponent<MeshCollider> ().enabled = false;
-				actualCharacter.GetComponent<MeshRenderer> ().enabled = false;
+				actualCharacter.GetComponentInChildren<CapsuleCollider> ().enabled = false;
+				actualCharacter.GetComponentInChildren<SkinnedMeshRenderer> ().enabled = false;
 
 				m_Animator.SetTrigger ("Open");
 			}
@@ -53,14 +53,15 @@ public class cameraManager : MonoBehaviour {
 
 	public void ActualiseCharacter (Transform charact) {
 		if (!m_Animator.GetCurrentAnimatorStateInfo (0).IsName ("CloseEyes")) {
-			lastThought = actualCharacter.GetComponentInChildren<CharacterCaracteristics> ().thought;
-			actualCharacter.GetComponent<MeshCollider> ().enabled = true;
-			actualCharacter.GetComponent<MeshRenderer> ().enabled = true;
+			lastThought = actualCharacter.parent.GetComponent<CharacterCaracteristics> ().thought;
+			actualCharacter.GetComponentInChildren<CapsuleCollider> ().enabled = true;
+			actualCharacter.GetComponentInChildren<SkinnedMeshRenderer> ().enabled = true;
 			m_Animator.SetTrigger ("Close");
 			lastThought.volume = 0;
 			actualCharacter = charact;
-			GetComponent<AudioSourceLoudnessTester> ().audioSource = actualCharacter.GetComponent<CharacterCaracteristics> ().thought;
-			actualCharacter.GetComponent<CharacterCaracteristics> ().thought.volume = 1;
+			newThought = actualCharacter.parent.GetComponent<CharacterCaracteristics> ().thought;
+			GetComponent<AudioSourceLoudnessTester> ().audioSource = actualCharacter.parent.GetComponent<CharacterCaracteristics> ().thought;
+			actualCharacter.parent.GetComponent<CharacterCaracteristics> ().thought.volume = 1;
 		}
 	}
 }
