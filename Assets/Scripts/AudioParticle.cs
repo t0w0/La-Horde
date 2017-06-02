@@ -17,9 +17,8 @@ public class AudioParticle : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
-
 		clipSampleData = new float[sampleDataLength];
-
+		audioSource = transform.parent.GetComponent<AudioSource> ();
 	}
 
 	// Update is called once per frame
@@ -38,16 +37,13 @@ public class AudioParticle : MonoBehaviour {
 			//Debug.Log(clipLoudness);
 		}
 		if (clipLoudness > loudnessThreshold) {
-			Debug.Log (clipLoudness);
+			//Debug.Log (clipLoudness);
+
 			transform.GetComponentInChildren<ParticleSystem>().startColor = new Color (140,192,145, clipLoudness.Remap (0, 0.3f, 0, 1));
-			transform.GetComponentInChildren<ParticleSystem>().startSize = clipLoudness.Remap (0, 0.3f, 0, 0.5f);
+			transform.GetComponentInChildren<ParticleSystem>().startSize = clipLoudness.Remap (0, 0.3f, 0, 0.2f);
 
-			transform.GetChild (0).GetComponent<ParticleSystem> ().Emit (Mathf.FloorToInt(clipLoudness.Remap (0, 0.3f, 0, 3)));
+			transform.GetChild (0).GetComponent<ParticleSystem> ().Emit (burst);
 		} 
-		else {
-			
-		}
-
 	}
 
 }
