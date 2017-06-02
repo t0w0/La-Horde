@@ -33,6 +33,10 @@ public class Targetting: MonoBehaviour
 	public float transitionTime = 0.2f;
 	public float chargingTime = 0.05f;
 
+	public Material[] hoverMaterial;
+	public Material[] originalMat;
+	public Transform hoverCharacter;
+
 	void Start () 
 	{	
 		camManag = transform.parent.GetComponent<cameraManager> ();
@@ -60,7 +64,7 @@ public class Targetting: MonoBehaviour
 		}
 		// rayCasted est true si un objet possédant le tag character est détécté
 
-		if (Input.GetMouseButtonDown (0)) { 	// L'utilisateur appuye sur le click
+		if (Input.GetButtonDown ("Fire1")) { 	// L'utilisateur appuye sur le click
 
 			if (rayCasted) {
 				Cursor.SetCursor (cursorHover, hotSpot, cursorMode);
@@ -76,30 +80,34 @@ public class Targetting: MonoBehaviour
 				Cursor.SetCursor (cursorOff, hotSpot, cursorMode);
 			}
 
-
-
 		}
 
 		else  // L'utilisateur bouge la souris sans cliquer 
 		{
 			if (rayCasted) 
 			{
-				Cursor.SetCursor (cursorHover, hotSpot, cursorMode);
+				
+				if (hoverCharacter == null) {
+					Cursor.SetCursor (cursorHover, hotSpot, cursorMode);
+					originalMat = hitInfo.transform.GetComponentInChildren<SkinnedMeshRenderer>().materials;
+					hitInfo.transform.GetComponentInChildren<SkinnedMeshRenderer>().materials = hoverMaterial;
+					//hitInfo.transform.GetComponent<CharacterCaracteristics> ().name.characterSize = 0.01f;
+					hoverCharacter = hitInfo.transform;
+				}
 			} 
 			else 
 			{
 				Cursor.SetCursor (cursorOff, hotSpot, cursorMode);
+				if (hoverCharacter != null) {
+					hoverCharacter.GetComponentInChildren<SkinnedMeshRenderer>().materials = originalMat;
+					//hoverCharacter.GetComponent<CharacterCaracteristics> ().name.characterSize = 0f;
+					hoverCharacter = null;
+				}
+
 			}
 			selected = false;
-			//targettedObject = null;
-			//chargingCounter = 0;
-		}
 
-//		if (lastTargettedObject) {
-//			if (lastTargettedObject.GetComponent<AgentsParameters> ().isMoving && chargingCounter == 0) {
-//				myTransform.position = targettedObject.GetComponent<AgentsParameters> ().anchor.position;
-//			}
-//		}
+		}
 	}
 
 	/*void LateUpdate () {

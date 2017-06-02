@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 3b622ffcb15508c4599fd7a8ab6a86d3
+timeCreated: 1495287789
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Maax
+  fontNames:
+  - Maax
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

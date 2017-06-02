@@ -18,107 +18,50 @@ public class cameraManager : MonoBehaviour {
 	private AudioSource lastThought;
 	private AudioSource newThought;
 
-	private bool vifView = false;
-
-	// Use this for initialization
 	void Start () {
 		m_Camera = Camera.main;
 		m_Head = m_Camera.transform.parent;
 		m_Animator = m_Camera.GetComponent<Animator> ();
-		actualCharacter = Characters.GetChild(beginCharacter);
-		m_Head.transform.SetParent (actualCharacter.GetComponentInChildren<CharacterCaracteristics> ().cameraParent);
+		actualCharacter = Characters.GetChild(beginCharacter).GetChild(0);
+		m_Head.transform.SetParent (actualCharacter.parent.GetComponent<CharacterCaracteristics> ().cameraParent);
 		m_Head.transform.localPosition = Vector3.zero;
-		newThought = actualCharacter.GetComponentInChildren<CharacterCaracteristics> ().thought;
+		newThought = actualCharacter.parent.GetComponent<CharacterCaracteristics> ().thought;
 		newThought.volume = 1;
-
+		actualCharacter.GetComponentInChildren<CapsuleCollider> ().enabled = false;
+		actualCharacter.GetComponentInChildren<SkinnedMeshRenderer> ().enabled = false;
+		GetComponent<AudioSourceLoudnessTester> ().audioSource = actualCharacter.parent.GetComponent<CharacterCaracteristics> ().thought;
+		actualCharacter.parent.GetComponent<CharacterCaracteristics> ().thought.volume = 1;
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
-
-		/*if (Input.GetKeyDown (KeyCode.Space)) {
-			voirLeVif ();
-		}*/
-
-		/*if (!m_Animator.GetCurrentAnimatorStateInfo (0).IsName ("CloseEyes")) {
-			if (Input.GetKeyDown(KeyCode.UpArrow)) {
-				lastThought = Characters.GetChild(actualCharacter).GetComponent<CharacterCaracteristics> ().thought;
-				m_Animator.SetTrigger ("Close");
-				actualCharacter++;
-				if (actualCharacter >= Characters.transform.childCount) {
-					actualCharacter = 0;
-				} 
-				newThought = Characters.GetChild(actualCharacter).GetComponent<CharacterCaracteristics> ().thought;
-			}
-
-			else if (Input.GetKeyDown(KeyCode.DownArrow)) {
-				lastThought = Characters.GetChild(actualCharacter).GetComponent<CharacterCaracteristics> ().thought;
-				m_Animator.SetTrigger ("Close");
-				actualCharacter--;
-				if (actualCharacter < 0) {
-					actualCharacter = Characters.childCount - 1;
-				}
-				newThought = Characters.GetChild(actualCharacter).GetComponent<CharacterCaracteristics> ().thought;
-			}
-		}*/
 
 		if (m_Animator.GetCurrentAnimatorStateInfo (0).IsName("CloseEyes") && !m_Animator.IsInTransition(0)) {
 			
 			if (m_Animator.GetCurrentAnimatorStateInfo (0).normalizedTime > 1){
 		
-				m_Head.transform.SetParent (actualCharacter.GetComponentInChildren<CharacterCaracteristics> ().cameraParent);
+				m_Head.transform.SetParent (actualCharacter.parent.GetComponent<CharacterCaracteristics> ().cameraParent);
 				m_Head.transform.localPosition = Vector3.zero;
 				lastThought.volume = 0;
 				newThought.volume = 1;
-				actualCharacter.GetComponentInChildren<MeshCollider> ().enabled = false;
-				actualCharacter.GetComponentInChildren<MeshRenderer> ().enabled = false;
+				actualCharacter.GetComponentInChildren<CapsuleCollider> ().enabled = false;
+				actualCharacter.GetComponentInChildren<SkinnedMeshRenderer> ().enabled = false;
 
 				m_Animator.SetTrigger ("Open");
 			}
 		} 
-		
 	}
 
 	public void ActualiseCharacter (Transform charact) {
 		if (!m_Animator.GetCurrentAnimatorStateInfo (0).IsName ("CloseEyes")) {
-			lastThought = actualCharacter.GetComponentInChildren<CharacterCaracteristics> ().thought;
-			actualCharacter.GetComponentInChildren<MeshCollider> ().enabled = true;
-			actualCharacter.GetComponentInChildren<MeshRenderer> ().enabled = true;
+			lastThought = actualCharacter.parent.GetComponent<CharacterCaracteristics> ().thought;
+			actualCharacter.GetComponentInChildren<CapsuleCollider> ().enabled = true;
+			actualCharacter.GetComponentInChildren<SkinnedMeshRenderer> ().enabled = true;
 			m_Animator.SetTrigger ("Close");
-			newThought = charact.GetComponentInChildren<CharacterCaracteristics> ().thought;
+			lastThought.volume = 0;
 			actualCharacter = charact;
+			newThought = actualCharacter.parent.GetComponent<CharacterCaracteristics> ().thought;
+			GetComponent<AudioSourceLoudnessTester> ().audioSource = actualCharacter.parent.GetComponent<CharacterCaracteristics> ().thought;
+			actualCharacter.parent.GetComponent<CharacterCaracteristics> ().thought.volume = 1;
 		}
-	}
-
-	void voirLeVif() {
-		if (!vifView) {
-			foreach (Transform tr in Characters) {
-				tr.GetComponent<SkinnedMeshRenderer> ().enabled = false;
-				tr.GetComponentInChildren<ParticleSystem> ().Play();
-
-			}
-			foreach (Transform tr in Setting) {
-				tr.GetComponent<MeshRenderer> ().enabled = false;
-			}
-			m_Camera.GetComponent<VignetteAndChromaticAberration> ().intensity = 0.4f ;
-			m_Camera.GetComponent<VignetteAndChromaticAberration> ().blur = 0.5f ;
-			m_Camera.GetComponent<VignetteAndChromaticAberration> ().chromaticAberration = 25 ;
-			vifView = true;
-		} 
-		else {
-			foreach (Transform tr in Characters) {
-				tr.GetComponent<SkinnedMeshRenderer> ().enabled = true;
-				tr.GetComponentInChildren<ParticleSystem> ().Stop();
-
-			}
-			foreach (Transform tr in Setting) {
-				tr.GetComponent<MeshRenderer> ().enabled = true;
-			}
-			m_Camera.GetComponent<VignetteAndChromaticAberration> ().intensity =0.036f ;
-			m_Camera.GetComponent<VignetteAndChromaticAberration> ().blur = 0 ;
-			m_Camera.GetComponent<VignetteAndChromaticAberration> ().chromaticAberration = 0.2f ;
-			vifView = false;
-		}
-
 	}
 }

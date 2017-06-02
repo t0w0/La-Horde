@@ -27,7 +27,7 @@ public class WindManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		transform.position = horde.transform.position;
+		transform.position = Camera.main.transform.position;
 		if (Input.GetKeyDown (KeyCode.UpArrow)) { 
 			windStrength += delta;
 			ActualiseWind ();
