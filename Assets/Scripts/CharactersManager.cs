@@ -9,6 +9,10 @@ public class CharactersManager : MonoBehaviour {
 	public SkinnedMeshRenderer[] meshes;
 	public CapsuleCollider[] colliders;
 	public Transform[] heads;
+	public bool[] walk = new bool[9];
+	public bool[] idle  = new bool[9];
+	private bool[] m_walk = new bool[9];
+	private bool[] m_idle = new bool[9];
 
 	public AudioSource[] pensees;
 	public AudioSource[] dialogues;
@@ -34,7 +38,7 @@ public class CharactersManager : MonoBehaviour {
 				
 			meshes [i] = characters [i].GetComponentInChildren<SkinnedMeshRenderer> ();
 			colliders [i] = characters [i].GetComponentInChildren<CapsuleCollider> ();
-			heads [i] = characters [i].GetComponentInChildren<SkinnedMeshRenderer>().transform.GetChild (0).GetChild (0).GetChild (0).GetChild (1).GetChild(0).GetChild(0);
+			heads [i] = meshes [i].transform.GetChild (0).GetChild (0).GetChild (0).GetChild (1).GetChild (0).GetChild (0);
 
 			GameObject pensee = new GameObject ("pensee");
 			pensee.transform.parent = heads[i];
@@ -62,6 +66,19 @@ public class CharactersManager : MonoBehaviour {
 		}	
 	}
 
+	void Update () {
+		for (int i = 0; i < characters.Length; i++) {
+			if (m_walk [i] != walk [i]) {
+				m_walk [i] = walk [i];
+				ActualiseState ("Walk", true, i);
+			}
+			if (m_idle [i] != idle [i]) {
+				m_idle [i] = idle [i];
+				ActualiseState ("Idle", true, i);
+			}
+		}
+	}
+
 	public int GetCharacterIndex (CapsuleCollider coll) {
 		int index = -1;
 		for (int i = 0; i < colliders.Length; i++) {
@@ -74,4 +91,20 @@ public class CharactersManager : MonoBehaviour {
 			Debug.Log ("Impossible to find Character's Index");
 		return index;
 	}
+
+	public void ActualiseState (string str, bool b, int index){
+		
+		Animator anim = meshes [index].GetComponent<Animator> ();
+
+		if (str == "Walk") {
+			anim.SetBool ("Walk", b);
+			anim.SetBool ("Idle", !b);
+		}
+		if (str == "Idle") {
+			anim.SetBool ("Walk", !b);
+			anim.SetBool ("Idle", b);
+		}
+	}
 }
+
+

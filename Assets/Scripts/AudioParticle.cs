@@ -25,8 +25,8 @@ public class AudioParticle : MonoBehaviour {
 		clipSampleData = new float[sampleDataLength];
 		audioSource = transform.parent.GetComponent<AudioSource> ();
 		col = GetComponent<ParticleSystem>().startColor;
-		maskMat = transform.parent.parent.parent.parent.parent.parent.parent.parent.GetComponentInChildren<SkinnedMeshRenderer> ().materials [3];
-		maskColor = maskMat.color;
+		//maskMat = transform.parent.parent.parent.parent.parent.parent.parent.parent.GetComponentInChildren<SkinnedMeshRenderer> ().materials [3];
+		//maskColor = maskMat.color;
 	}
 
 	// Update is called once per frame
@@ -51,10 +51,10 @@ public class AudioParticle : MonoBehaviour {
 			GetComponent<ParticleSystem>().startSize = clipLoudness.Remap (0, 0.3f, 0, 0.2f);
 
 			GetComponent<ParticleSystem> ().Emit (burst);
-			maskMat.color = maskActif;
+			//maskMat.color = maskActif;
 		} 
 
-		else maskMat.color = maskColor;
+		//else maskMat.color = maskColor;
 	}
 
 }

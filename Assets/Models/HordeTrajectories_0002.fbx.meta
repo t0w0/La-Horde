@@ -115,7 +115,91 @@ ModelImporter:
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: CINEMA_4D_Prise Principale
+      takeName: CINEMA_4D_Prise Principale
+      firstFrame: 1203
+      lastFrame: 2208
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: FirstPart
+        weight: 1
+      - path: FirstPart/Aoi
+        weight: 1
+      - path: FirstPart/Coriolis
+        weight: 1
+      - path: FirstPart/Oroshi
+        weight: 1
+      - path: FirstPart/Steppe
+        weight: 1
+      - path: FirstPart/Talweg
+        weight: 1
+      - path: Horde_Carac
+        weight: 1
+      - path: Horde_Carac/AoiAnchor
+        weight: 1
+      - path: Horde_Carac/AoiAnchor/Aoi_2_2
+        weight: 1
+      - path: Horde_Carac/CaracoleAnchor
+        weight: 1
+      - path: Horde_Carac/CaracoleAnchor/Caracole_2
+        weight: 1
+      - path: Horde_Carac/CoriolisAnchor
+        weight: 1
+      - path: Horde_Carac/CoriolisAnchor/Coriolis_char
+        weight: 1
+      - path: Horde_Carac/CoriolisAnchor/Coriolis_char/Char
+        weight: 1
+      - path: Horde_Carac/CoriolisAnchor/Coriolis_char/Coriolis_2_2
+        weight: 1
+      - path: Horde_Carac/GolgothAnchor
+        weight: 1
+      - path: Horde_Carac/GolgothAnchor/Golgoth_2
+        weight: 1
+      - path: Horde_Carac/OroshiAnchor
+        weight: 1
+      - path: Horde_Carac/OroshiAnchor/Oroshi_2_2
+        weight: 1
+      - path: Horde_Carac/PietroAnchor
+        weight: 1
+      - path: Horde_Carac/PietroAnchor/Pietro_2
+        weight: 1
+      - path: Horde_Carac/SovAnchor
+        weight: 1
+      - path: Horde_Carac/SovAnchor/Sov_2
+        weight: 1
+      - path: Horde_Carac/SteppeAnchor
+        weight: 1
+      - path: Horde_Carac/SteppeAnchor/Steppe_2_2
+        weight: 1
+      - path: Horde_Carac/TalwegAnchor
+        weight: 1
+      - path: Horde_Carac/TalwegAnchor/Talweg_2_2
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []
