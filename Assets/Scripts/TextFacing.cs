@@ -14,5 +14,6 @@ public class TextFacing : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		transform.LookAt (cam);
+		transform.localRotation = Quaternion.Euler (0, cam.transform.parent.rotation.eulerAngles.y - 90, 0);
 	}
 }

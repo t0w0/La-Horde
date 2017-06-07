@@ -1,75 +1,92 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
-/**
- * Cette classe permet de créer un rayon partant de la caméra en direction de la position du curseur dans l'environnement 3D.
- * L'objet portant se script peut séléctionner des objets et se téléporter à leur position.
- * Trois curseurs sont implémentés : 
- * Un curseur cursorOff lorsqu'aucun objet selectionnable (tag "Target") n'est détecté par le rayon.
- * Un curseur cursorHover lorsqu'un objet séléctionnable est détécté mais non séléctionné
- * Un curseur cursorSelected lorsqu'un objet est selectionné
-**/
-public class Targetting: MonoBehaviour 
+public class Targetting : MonoBehaviour 
 {
 
-	public GameObject world;
-	private Transform myTransform;
-	public Transform lastTargettedObject;
-	public CapsuleCollider targettedObject;	// Objet visé, null si aucun objet visé
+	public MeshCollider targettedObject;	// Objet visé, null si aucun objet visé
 	private cameraManager camManag;
+	public HUDManager hudManag;
+	public CharactersManager charManag;
 
 	private int RAYCASTLENGTH = 100;	// Longueur du rayon issu de la caméra
-
-	private CursorMode cursorMode = CursorMode.Auto;
-	private Vector2 hotSpot = new Vector2(256, 256);	// Offset du centre du curseur
-	public Texture2D cursorOff, cursorSelected, cursorHover;	// Textures à appliquer aux curseurs
-
-	public bool selected = false;
-	public bool accepted = false;
-
-	public float chargingDist = 10;
-	private float baseDist;
-	public int chargingCounter = 0;
-	public float transitionTime = 0.2f;
-	public float chargingTime = 0.05f;
+	public float timer = 0;
+	public float more = 0.0025f;
+	public float less = 0.01f;
 
 	public Material[] hoverMaterial;
 	public Material[] originalMat;
 	public Transform hoverCharacter;
+	public Image circle;
 
 	void Start () 
 	{	
 		camManag = transform.parent.GetComponent<cameraManager> ();
-		baseDist = chargingDist;
-		myTransform = transform.parent.parent;
-		//lastTargettedObject = transform.GetComponent<MenuManager>().startAgent;
-		//targettedObject = transform.GetComponent<MenuManager>().startAgent;
-
-		Cursor.SetCursor (cursorOff, hotSpot, cursorMode);
-		Cursor.visible = true;
 	}
 
-	void Update () 
+	void Update ()
 	{
 		// Le raycast attache un objet séléctionné
 		RaycastHit hitInfo;
-		Ray ray = GetComponentInChildren<Camera>().ScreenPointToRay(Input.mousePosition);
+		Ray ray = GetComponentInChildren<Camera> ().ScreenPointToRay (new Vector3 (Screen.width/2, Screen.height/2, 0));
 		//Ray ray = GetComponentInChildren<Camera>().ScreenPointToRay(transform.forward);
 		Debug.DrawRay (ray.origin, ray.direction * RAYCASTLENGTH, Color.blue);
 		bool rayCasted = Physics.Raycast (ray, out hitInfo, RAYCASTLENGTH);
 
-		if (rayCasted) 
-		{
-			rayCasted = hitInfo.transform.CompareTag("Character");
-		}
-		// rayCasted est true si un objet possédant le tag character est détécté
+		if (rayCasted) {
+			rayCasted = hitInfo.transform.CompareTag ("Character");
+			if (rayCasted) {
+				if (hoverCharacter == null) {
 
+					targettedObject = hitInfo.transform.GetComponent<MeshCollider>();
+					originalMat = hitInfo.transform.GetComponentInChildren<SkinnedMeshRenderer>().materials;
+					hitInfo.transform.GetComponentInChildren<SkinnedMeshRenderer>().materials = hoverMaterial;
+					hoverCharacter = hitInfo.transform;
+					hudManag.Show(charManag.GetCharacterIndex (targettedObject));
+				}
+				Transit ();
+			} 
+		}
+		else {
+			Untransit ();
+
+			if (hoverCharacter != null) {
+				hoverCharacter.GetComponentInChildren<SkinnedMeshRenderer>().materials = originalMat;
+				hoverCharacter = null;
+			}
+
+		}
+}
+
+	public void Transit () {
+		if (timer < 1f) {
+			timer += more;
+			circle.fillAmount = timer;
+		}
+		else {
+			//Debug.Log (targettedObject);
+			camManag.ActualiseCharacter (targettedObject);
+			timer = 0;
+			circle.fillAmount = timer;
+		}
+	}
+
+	public void Untransit () {
+		if (timer > 0f) {
+			timer -= less;
+			circle.fillAmount = timer;
+		}
+		else {
+			circle.fillAmount = timer;
+		}
+	}
+		// rayCasted est true si un objet possédant le tag character est détécté
+		/*
 		if (Input.GetButtonDown ("Fire1")) { 	// L'utilisateur appuye sur le click
 
 			if (rayCasted) {
 				Cursor.SetCursor (cursorSelected, hotSpot, cursorMode);
-
-				selected = true;
 
 				targettedObject = hitInfo.transform.GetComponent<CapsuleCollider>();
 				//Debug.Log (targettedObject);
@@ -91,6 +108,7 @@ public class Targetting: MonoBehaviour
 					Cursor.SetCursor (cursorHover, hotSpot, cursorMode);
 					originalMat = hitInfo.transform.GetComponentInChildren<SkinnedMeshRenderer>().materials;
 					hitInfo.transform.GetComponentInChildren<SkinnedMeshRenderer>().materials = hoverMaterial;
+					//hitInfo.transform.GetComponentInChildren<SkinnedMeshRenderer>().transform.gameObject.layer = 5;
 					//hitInfo.transform.GetComponent<CharacterCaracteristics> ().name.characterSize = 0.01f;
 					hoverCharacter = hitInfo.transform;
 				}
@@ -100,12 +118,12 @@ public class Targetting: MonoBehaviour
 				Cursor.SetCursor (cursorOff, hotSpot, cursorMode);
 				if (hoverCharacter != null) {
 					hoverCharacter.GetComponentInChildren<SkinnedMeshRenderer>().materials = originalMat;
+					//hoverCharacter.GetComponentInChildren<SkinnedMeshRenderer>().transform.gameObject.layer = 0;
 					//hoverCharacter.GetComponent<CharacterCaracteristics> ().name.characterSize = 0f;
 					hoverCharacter = null;
 				}
 
 			}
-			selected = false;
 
 		}
 	}

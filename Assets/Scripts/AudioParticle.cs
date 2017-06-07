@@ -3,17 +3,18 @@ using UnityEngine.Audio;
 
 public class AudioParticle : MonoBehaviour {
 
-	public CharactersManager charManager;
-	public AudioSource audioSource;
+	private CharactersManager charManager;
+	private AudioSource audioSource;
 	public float updateStep = 0.05f;
 	public int sampleDataLength = 1024;
 	public float loudnessThreshold = 0.1f;
-	public Color col;
-	public Color maskColor;
-	public Material maskMat;
-	public Color maskActif;
+	private Color col;
 
 	public int burst = 1;
+	public float maxSize = 0.5f;
+	public float minSize = 0.1f;
+	public float maxAlpha = 0;
+	public float minAlpha = 1;
 
 	private float currentUpdateTime = 0f;
 
@@ -47,8 +48,8 @@ public class AudioParticle : MonoBehaviour {
 		if (clipLoudness > loudnessThreshold) {
 			//Debug.Log (clipLoudness);
 
-			GetComponent<ParticleSystem>().startColor = new Color (col.r, col.g, col.b, clipLoudness.Remap (0, 0.2f, 0, 1));
-			GetComponent<ParticleSystem>().startSize = clipLoudness.Remap (0, 0.3f, 0, 0.2f);
+			GetComponent<ParticleSystem>().startColor = new Color (col.r, col.g, col.b, clipLoudness.Remap (0, 0.2f, minAlpha, maxAlpha));
+			GetComponent<ParticleSystem>().startSize = clipLoudness.Remap (0, 0.3f, minSize, maxSize);
 
 			GetComponent<ParticleSystem> ().Emit (burst);
 			//maskMat.color = maskActif;

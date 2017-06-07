@@ -5,9 +5,12 @@ using UnityEngine;
 
 public class CharactersManager : MonoBehaviour {
 
+	public int charIndex = 0;
 	public Transform[] characters;
+	public Mesh[] charactersMeshes = new Mesh[9];
+	public Mesh[] charactersWOHead = new Mesh[9];
 	public SkinnedMeshRenderer[] meshes;
-	public CapsuleCollider[] colliders;
+	public MeshCollider[] colliders;
 	public Transform[] heads;
 	public bool[] walk = new bool[9];
 	public bool[] idle  = new bool[9];
@@ -29,7 +32,7 @@ public class CharactersManager : MonoBehaviour {
 
 		heads = new Transform[characters.Length];
 		meshes = new SkinnedMeshRenderer[characters.Length];
-		colliders = new CapsuleCollider[characters.Length];
+		colliders = new MeshCollider[characters.Length];
 		pensees = new AudioSource[characters.Length];
 		dialogues = new AudioSource[characters.Length];
 
@@ -37,7 +40,8 @@ public class CharactersManager : MonoBehaviour {
 		for (int i = 0 ; i < characters.Length ; i++) {
 				
 			meshes [i] = characters [i].GetComponentInChildren<SkinnedMeshRenderer> ();
-			colliders [i] = characters [i].GetComponentInChildren<CapsuleCollider> ();
+			charactersMeshes [i] = meshes [i].sharedMesh;
+			colliders [i] = characters [i].GetComponentInChildren<MeshCollider> ();
 			heads [i] = meshes [i].transform.GetChild (0).GetChild (0).GetChild (0).GetChild (1).GetChild (0).GetChild (0);
 
 			GameObject pensee = new GameObject ("pensee");
@@ -79,7 +83,7 @@ public class CharactersManager : MonoBehaviour {
 		}
 	}
 
-	public int GetCharacterIndex (CapsuleCollider coll) {
+	public int GetCharacterIndex (MeshCollider coll) {
 		int index = -1;
 		for (int i = 0; i < colliders.Length; i++) {
 			if (coll == colliders [i]) {
