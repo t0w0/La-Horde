@@ -43,7 +43,7 @@ public class Targetting : MonoBehaviour
 					originalMat = hitInfo.transform.GetComponentInChildren<SkinnedMeshRenderer>().materials;
 					hitInfo.transform.GetComponentInChildren<SkinnedMeshRenderer>().materials = hoverMaterial;
 					hoverCharacter = hitInfo.transform;
-					hudManag.Show(charManag.GetCharacterIndex (targettedObject));
+					hudManag.Show(charManag.GetCharacterIndex (targettedObject), true);
 				}
 				Transit ();
 			} 
@@ -52,6 +52,7 @@ public class Targetting : MonoBehaviour
 			Untransit ();
 
 			if (hoverCharacter != null) {
+				hudManag.Show(charManag.GetCharacterIndex (hoverCharacter.GetComponent<MeshCollider>()), false);
 				hoverCharacter.GetComponentInChildren<SkinnedMeshRenderer>().materials = originalMat;
 				hoverCharacter = null;
 			}
