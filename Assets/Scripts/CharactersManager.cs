@@ -53,6 +53,9 @@ public class CharactersManager : MonoBehaviour {
 			pensees[i] = pensee.GetComponent<AudioSource> ();
 			pensees[i].Play ();
 			GameObject.Instantiate (particlePensee, pensee.transform);
+			pensee.transform.GetChild(0).GetComponent<AudioParticle> ().index = i;
+			pensee.transform.GetChild(0).GetComponent<AudioParticle> ().type = 0;
+
 
 			GameObject dialogue = new GameObject ("dialogue");
 			dialogue.transform.parent = heads[i];
@@ -65,7 +68,10 @@ public class CharactersManager : MonoBehaviour {
 			dialogue.GetComponent<AudioSource> ().outputAudioMixerGroup = gr;
 			dialogues[i] = dialogue.GetComponent<AudioSource> ();
 			dialogues[i] .Play ();
+
 			GameObject.Instantiate (particleDialogue, dialogue.transform);
+			dialogue.transform.GetChild(0).GetComponent<AudioParticle> ().index = i;
+			dialogue.transform.GetChild(0).GetComponent<AudioParticle> ().type = 1;
 
 		}	
 	}

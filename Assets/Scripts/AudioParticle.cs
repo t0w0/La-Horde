@@ -3,12 +3,16 @@ using UnityEngine.Audio;
 
 public class AudioParticle : MonoBehaviour {
 
-	private CharactersManager charManager;
+	public CharactersManager charManager;
+	public HUDManager hudManager;
 	private AudioSource audioSource;
 	public float updateStep = 0.05f;
 	public int sampleDataLength = 1024;
 	public float loudnessThreshold = 0.1f;
 	private Color col;
+	public int index;
+	public int type;
+	public float timer;
 
 	public int burst = 1;
 	public float maxSize = 0.5f;
@@ -25,6 +29,7 @@ public class AudioParticle : MonoBehaviour {
 	void Awake () {
 		clipSampleData = new float[sampleDataLength];
 		audioSource = transform.parent.GetComponent<AudioSource> ();
+		hudManager = GameObject.Find ("HudManager").GetComponent<HUDManager> ();
 		col = GetComponent<ParticleSystem>().startColor;
 		//maskMat = transform.parent.parent.parent.parent.parent.parent.parent.parent.GetComponentInChildren<SkinnedMeshRenderer> ().materials [3];
 		//maskColor = maskMat.color;
@@ -47,13 +52,20 @@ public class AudioParticle : MonoBehaviour {
 		}
 		if (clipLoudness > loudnessThreshold) {
 			//Debug.Log (clipLoudness);
-
-			GetComponent<ParticleSystem>().startColor = new Color (col.r, col.g, col.b, clipLoudness.Remap (0, 0.2f, minAlpha, maxAlpha));
-			GetComponent<ParticleSystem>().startSize = clipLoudness.Remap (0, 0.3f, minSize, maxSize);
+			if (clipLoudness > 0.1f) {
+				timer = 1;
+				hudManager.ActualiseHudState (index, type, true, timer);
+			}
+			GetComponent<ParticleSystem> ().startColor = new Color (col.r, col.g, col.b, clipLoudness.Remap (0, 0.2f, minAlpha, maxAlpha));
+			GetComponent<ParticleSystem> ().startSize = clipLoudness.Remap (0, 0.3f, minSize, maxSize);
 
 			GetComponent<ParticleSystem> ().Emit (burst);
 			//maskMat.color = maskActif;
-		} 
+		} else { 
+			timer -= 0.01f;
+			hudManager.ActualiseHudState (index, type, false, timer);
+
+		}
 
 		//else maskMat.color = maskColor;
 	}

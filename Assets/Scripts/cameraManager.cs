@@ -46,6 +46,13 @@ public class cameraManager : MonoBehaviour {
 
 	void Update () {
 
+		/*if (m_Head.localRotation.eulerAngles.x > 270|| m_Head.localRotation.eulerAngles.x < 90) {
+			Debug.Log (m_Head.localRotation.eulerAngles.x);
+			charManag.meshes [indexCharacter].enabled = false;
+		} else {
+			charManag.meshes [indexCharacter].enabled = true;
+		}*/
+
 		if (m_Animator.GetCurrentAnimatorStateInfo (0).IsName("CloseEyes") && !m_Animator.IsInTransition(0)) {
 			
 			if (m_Animator.GetCurrentAnimatorStateInfo (0).normalizedTime > 1){
