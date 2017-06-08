@@ -3,12 +3,22 @@ using UnityEngine.Audio;
 
 public class AudioParticle : MonoBehaviour {
 
-	public AudioSource audioSource;
+	public CharactersManager charManager;
+	public HUDManager hudManager;
+	private AudioSource audioSource;
 	public float updateStep = 0.05f;
 	public int sampleDataLength = 1024;
 	public float loudnessThreshold = 0.1f;
+	private Color col;
+	public int index;
+	public int type;
+	public float timer;
 
 	public int burst = 1;
+	public float maxSize = 0.5f;
+	public float minSize = 0.1f;
+	public float maxAlpha = 0;
+	public float minAlpha = 1;
 
 	private float currentUpdateTime = 0f;
 
@@ -19,6 +29,10 @@ public class AudioParticle : MonoBehaviour {
 	void Awake () {
 		clipSampleData = new float[sampleDataLength];
 		audioSource = transform.parent.GetComponent<AudioSource> ();
+		hudManager = GameObject.Find ("HudManager").GetComponent<HUDManager> ();
+		col = GetComponent<ParticleSystem>().startColor;
+		//maskMat = transform.parent.parent.parent.parent.parent.parent.parent.parent.GetComponentInChildren<SkinnedMeshRenderer> ().materials [3];
+		//maskColor = maskMat.color;
 	}
 
 	// Update is called once per frame
@@ -38,12 +52,22 @@ public class AudioParticle : MonoBehaviour {
 		}
 		if (clipLoudness > loudnessThreshold) {
 			//Debug.Log (clipLoudness);
+			if (clipLoudness > 0.1f) {
+				timer = 1;
+				hudManager.ActualiseHudState (index, type, true, timer);
+			}
+			GetComponent<ParticleSystem> ().startColor = new Color (col.r, col.g, col.b, clipLoudness.Remap (0, 0.2f, minAlpha, maxAlpha));
+			GetComponent<ParticleSystem> ().startSize = clipLoudness.Remap (0, 0.3f, minSize, maxSize);
 
-			transform.GetComponentInChildren<ParticleSystem>().startColor = new Color (140,192,145, clipLoudness.Remap (0, 0.3f, 0, 1));
-			transform.GetComponentInChildren<ParticleSystem>().startSize = clipLoudness.Remap (0, 0.3f, 0, 0.2f);
+			GetComponent<ParticleSystem> ().Emit (burst);
+			//maskMat.color = maskActif;
+		} else { 
+			timer -= 0.01f;
+			hudManager.ActualiseHudState (index, type, false, timer);
 
-			transform.GetChild (0).GetComponent<ParticleSystem> ().Emit (burst);
-		} 
+		}
+
+		//else maskMat.color = maskColor;
 	}
 
 }

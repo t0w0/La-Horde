@@ -1,0 +1,281 @@
+fileFormatVersion: 2
+guid: 50100f4847bf8034d9c33d62ff70e0f6
+timeCreated: 1496857445
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Aoi
+    100002: Aoi1
+    100004: AoiAnchor
+    100006: "Arriv\xE9e_au_port"
+    100008: Caracole
+    100010: Caracole2
+    100012: Caracole_s_exprime
+    100014: CaracoleAnchor
+    100016: Char
+    100018: Coriolis
+    100020: Coriolis1
+    100022: Coriolis_char
+    100024: CoriolisAnchor
+    100026: Fin
+    100028: Golgoth
+    100030: Golgoth_Motive
+    100032: GolgothAnchor
+    100034: Horde_Carac
+    100036: //RootNode
+    100038: Jusqu_au_port
+    100040: jusqu_au_village
+    100042: "Jusqu_\xE0_caracole"
+    100044: Oroshi
+    100046: Oroshi1
+    100048: OroshiAnchor
+    100050: Pietro
+    100052: Pietro2
+    100054: PietroAnchor
+    100056: Sov
+    100058: SovAnchor
+    100060: Steppe
+    100062: Steppe1
+    100064: SteppeAnchor
+    100066: Talweg
+    100068: Talweg1
+    100070: TalwegAnchor
+    400000: Aoi
+    400002: Aoi1
+    400004: AoiAnchor
+    400006: "Arriv\xE9e_au_port"
+    400008: Caracole
+    400010: Caracole2
+    400012: Caracole_s_exprime
+    400014: CaracoleAnchor
+    400016: Char
+    400018: Coriolis
+    400020: Coriolis1
+    400022: Coriolis_char
+    400024: CoriolisAnchor
+    400026: Fin
+    400028: Golgoth
+    400030: Golgoth_Motive
+    400032: GolgothAnchor
+    400034: Horde_Carac
+    400036: //RootNode
+    400038: Jusqu_au_port
+    400040: jusqu_au_village
+    400042: "Jusqu_\xE0_caracole"
+    400044: Oroshi
+    400046: Oroshi1
+    400048: OroshiAnchor
+    400050: Pietro
+    400052: Pietro2
+    400054: PietroAnchor
+    400056: Sov
+    400058: SovAnchor
+    400060: Steppe
+    400062: Steppe1
+    400064: SteppeAnchor
+    400066: Talweg
+    400068: Talweg1
+    400070: TalwegAnchor
+    2300000: Aoi
+    2300002: Caracole
+    2300004: Char
+    2300006: Coriolis
+    2300008: Golgoth
+    2300010: Oroshi
+    2300012: Pietro
+    2300014: Sov
+    2300016: Steppe
+    2300018: Talweg
+    3300000: Aoi
+    3300002: Caracole
+    3300004: Char
+    3300006: Coriolis
+    3300008: Golgoth
+    3300010: Oroshi
+    3300012: Pietro
+    3300014: Sov
+    3300016: Steppe
+    3300018: Talweg
+    4300000: Golgoth
+    4300002: Pietro
+    4300004: Sov
+    4300006: Aoi
+    4300008: Steppe
+    4300010: Talweg
+    4300012: Oroshi
+    4300014: Char
+    4300016: Coriolis
+    4300018: Caracole
+    7400000: trajectoire9
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: trajectoire9
+      takeName: CINEMA_4D_Prise Principale
+      firstFrame: 0
+      lastFrame: 14472
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: "Arriv\xE9e_au_port"
+        weight: 1
+      - path: Caracole_s_exprime
+        weight: 1
+      - path: Fin
+        weight: 1
+      - path: Golgoth_Motive
+        weight: 1
+      - path: Horde_Carac
+        weight: 1
+      - path: Horde_Carac/AoiAnchor
+        weight: 1
+      - path: Horde_Carac/AoiAnchor/Aoi
+        weight: 1
+      - path: Horde_Carac/CaracoleAnchor
+        weight: 1
+      - path: Horde_Carac/CaracoleAnchor/Caracole
+        weight: 1
+      - path: Horde_Carac/CoriolisAnchor
+        weight: 1
+      - path: Horde_Carac/CoriolisAnchor/Coriolis_char
+        weight: 1
+      - path: Horde_Carac/CoriolisAnchor/Coriolis_char/Char
+        weight: 1
+      - path: Horde_Carac/CoriolisAnchor/Coriolis_char/Coriolis
+        weight: 1
+      - path: Horde_Carac/GolgothAnchor
+        weight: 1
+      - path: Horde_Carac/GolgothAnchor/Golgoth
+        weight: 1
+      - path: Horde_Carac/OroshiAnchor
+        weight: 1
+      - path: Horde_Carac/OroshiAnchor/Oroshi
+        weight: 1
+      - path: Horde_Carac/PietroAnchor
+        weight: 1
+      - path: Horde_Carac/PietroAnchor/Pietro
+        weight: 1
+      - path: Horde_Carac/SovAnchor
+        weight: 1
+      - path: Horde_Carac/SovAnchor/Sov
+        weight: 1
+      - path: Horde_Carac/SteppeAnchor
+        weight: 1
+      - path: Horde_Carac/SteppeAnchor/Steppe
+        weight: 1
+      - path: Horde_Carac/TalwegAnchor
+        weight: 1
+      - path: Horde_Carac/TalwegAnchor/Talweg
+        weight: 1
+      - path: Jusqu_au_port
+        weight: 1
+      - path: jusqu_au_village
+        weight: 1
+      - path: jusqu_au_village/Caracole2
+        weight: 1
+      - path: jusqu_au_village/Pietro2
+        weight: 1
+      - path: "Jusqu_\xE0_caracole"
+        weight: 1
+      - path: "Jusqu_\xE0_caracole/Aoi1"
+        weight: 1
+      - path: "Jusqu_\xE0_caracole/Coriolis1"
+        weight: 1
+      - path: "Jusqu_\xE0_caracole/Oroshi1"
+        weight: 1
+      - path: "Jusqu_\xE0_caracole/Steppe1"
+        weight: 1
+      - path: "Jusqu_\xE0_caracole/Talweg1"
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
