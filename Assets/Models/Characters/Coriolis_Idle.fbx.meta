@@ -619,7 +619,7 @@ ModelImporter:
     4300010: Couvercle_2_2
     4300012: Char
     4300014: Coriolis
-    7400000: CINEMA_4D_Prise Principale
+    7400000: Coriolis_Idle
     9500000: //RootNode
     13700000: Coriolis
   materials:
@@ -646,7 +646,7 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: CINEMA_4D_Prise Principale
+      name: Coriolis_Idle
       takeName: CINEMA_4D_Prise Principale
       firstFrame: 0
       lastFrame: 48

@@ -570,7 +570,7 @@ ModelImporter:
     400560: Spine_null
     400562: Torso_con_
     4300000: Sov
-    7400000: CINEMA_4D_Prise Principale
+    7400000: Sov_Walk
     9500000: //RootNode
     13700000: //RootNode
   materials:
@@ -597,7 +597,7 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: CINEMA_4D_Prise Principale
+      name: Sov_Walk
       takeName: CINEMA_4D_Prise Principale
       firstFrame: 0
       lastFrame: 47
